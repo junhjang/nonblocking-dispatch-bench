@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1080" height="400" viewBox="0 0 1080 400" xmlns="http://www.w3.org/2000/svg"
+     font-family="-apple-system,Helvetica,Arial,sans-serif">
+  <rect width="1080" height="400" fill="#ffffff"/>
+  <defs>
+    <marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#e0533d"/>
+    </marker>
+    <marker id="ag" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#888888"/>
+    </marker>
+  </defs>
+
+  <text x="540" y="40" text-anchor="middle" font-size="17" font-weight="700" fill="#222">non-blocking dispatch benchmark · order round-trip</text>
+
+  <rect x="40" y="125" width="240" height="150" rx="8" fill="#f6f6f6" stroke="#bbb" stroke-width="1.5"/>
+  <text x="160" y="178" text-anchor="middle" font-size="15" font-weight="700" fill="#222">Strategy threads</text>
+  <text x="160" y="205" text-anchor="middle" font-size="12.5" fill="#666">x N</text>
+  <text x="160" y="232" text-anchor="middle" font-size="12.5" fill="#666">fire orders on a schedule</text>
+
+  <rect x="420" y="125" width="240" height="150" rx="8" fill="#f6f6f6" stroke="#bbb" stroke-width="1.5"/>
+  <text x="540" y="178" text-anchor="middle" font-size="15" font-weight="700" fill="#222">Orchestrator</text>
+  <text x="540" y="205" text-anchor="middle" font-size="12.5" fill="#666">x 1</text>
+  <text x="540" y="232" text-anchor="middle" font-size="12.5" fill="#666">route and dispatch</text>
+
+  <rect x="800" y="125" width="240" height="150" rx="8" fill="#f6f6f6" stroke="#bbb" stroke-width="1.5"/>
+  <text x="920" y="172" text-anchor="middle" font-size="15" font-weight="700" fill="#222">Gateway threads</text>
+  <text x="920" y="198" text-anchor="middle" font-size="12.5" fill="#666">x M, one per venue</text>
+  <text x="920" y="224" text-anchor="middle" font-size="12.5" fill="#666">hold each order</text>
+  <text x="920" y="242" text-anchor="middle" font-size="12.5" fill="#666">for delay D</text>
+
+  <text x="350" y="172" text-anchor="middle" font-size="12.5" font-weight="700" fill="#e0533d">submit_q</text>
+  <line x1="280" y1="186" x2="413" y2="186" stroke="#e0533d" stroke-width="2" marker-end="url(#ar)"/>
+  <line x1="420" y1="240" x2="287" y2="240" stroke="#888888" stroke-width="2" marker-end="url(#ag)"/>
+  <text x="350" y="262" text-anchor="middle" font-size="12.5" fill="#888">return_q</text>
+
+  <text x="730" y="172" text-anchor="middle" font-size="12.5" fill="#888">gateway_inbox</text>
+  <line x1="660" y1="186" x2="793" y2="186" stroke="#888888" stroke-width="2" marker-end="url(#ag)"/>
+  <line x1="800" y1="240" x2="667" y2="240" stroke="#e0533d" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="730" y="262" text-anchor="middle" font-size="12.5" font-weight="700" fill="#e0533d">completion_q</text>
+
+  <text x="540" y="332" text-anchor="middle" font-size="12.5" fill="#444"><tspan fill="#e0533d" font-weight="700">red</tspan> = contended MPSC hand-off (the four techniques are compared here)</text>
+  <text x="540" y="356" text-anchor="middle" font-size="12.5" fill="#444"><tspan fill="#888888" font-weight="700">grey</tspan> = fixed SPSC ring</text>
+</svg>

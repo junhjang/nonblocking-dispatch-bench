@@ -1,0 +1,16 @@
+# nonblocking-dispatch-bench hyperparameters.
+# Flat key: value, read at startup. No recompile needed when changed.
+# This is the configuration that produced the results in README.md
+# (AWS c7g.4xlarge, 16 vCPU). Constraint: n_strategies + m_venues + 2 <= cores.
+
+n_strategies:        8        # strategy threads (N)
+m_venues:            4        # gateway threads, one per venue (M)
+orders_per_strategy: 500000   # orders each strategy fires (N x Q total per run)
+window_ms:           10000    # orders are scheduled uniformly over [0, T]
+d_min_us:            5000     # venue delay D ~ Uniform(d_min, d_max)
+d_max_us:            500000
+repeats:             5        # runs per technique; reported as median-of-runs
+shared_cap:          8192     # submit_q / completion_q ring capacity
+spsc_cap:            8192     # gateway_inbox / return_q / per-producer SPSC
+sample_us:           50       # in-flight sampling period
+orch_work_sweep:     0,500,1000,1500   # orchestrator per-order work (ns), swept

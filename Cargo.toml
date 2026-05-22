@@ -1,0 +1,12 @@
+[package]
+name = "nonblocking-dispatch-bench"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+crossbeam-channel = "0.5"
+crossbeam-queue = "0.3"
+
+# Linux-only: thread-to-core pinning via sched_setaffinity.
+[target.'cfg(target_os = "linux")'.dependencies]
+libc = "0.2"
